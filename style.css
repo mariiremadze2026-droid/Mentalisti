@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: #0a0a0a;
+    color: #ddd;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ანიმაციური ფონი */
+.background {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1.8s ease;
+    filter: brightness(0.65) contrast(1.15);
+    z-index: 1;
+}
+
+/* სუბტილური წითელი ნისლი / ნაწილაკები */
+.background::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(139, 0, 0, 0.15) 0%, transparent 70%);
+    animation: redFog 25s infinite alternate ease-in-out;
+    z-index: 2;
+    pointer-events: none;
+}
+
+@keyframes redFog {
+    0% { opacity: 0.6; transform: scale(1.05); }
+    100% { opacity: 0.85; transform: scale(1); }
+}
+
+.character {
+    position: absolute;
+    bottom: 15%;
+    right: 8%;
+    width: 420px;
+    height: 580px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    transition: all 0.8s ease;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.9));
+    z-index: 3;
+}
+
+/* დიალოგის ყუთი — კინემატოგრაფიული */
+.dialogue-box {
+    position: absolute;
+    bottom: 6%;
+    left: 6%;
+    right: 6%;
+    background: rgba(10, 10, 15, 0.92);
+    border: 3px solid #8b0000;
+    border-top: 6px solid #ffd700;
+    border-radius: 8px;
+    padding: 25px 30px;
+    min-height: 170px;
+    box-shadow: 0 10px 40px rgba(139, 0, 0, 0.5);
+    z-index: 10;
+    animation: dialoguePop 0.6s ease;
+}
+
+@keyframes dialoguePop {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.speaker {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1.35em;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    margin-bottom: 12px;
+}
+
+.dialogue {
+    font-size: 1.28em;
+    line-height: 1.55;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* არჩევანი */
+.choices {
+    position: absolute;
+    bottom: 210px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 15;
+}
+
+.choice-btn {
+    background: rgba(20, 20, 30, 0.95);
+    color: #ffdd88;
+    border: 2px solid #8b0000;
+    padding: 16px 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.15em;
+    min-width: 480px;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+}
+
+.choice-btn:hover {
+    background: #8b0000;
+    color: white;
+    transform: translateY(-4px) scale(1.03);
+    border-color: #ffd700;
+}
+
+/* Lisbon Meter */
+.meter-container {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 20;
+    background: rgba(0,0,0,0.6);
+    padding: 10px 16px;
+    border-radius: 6px;
+    border: 1px solid #8b0000;
+}
+
+.meter-label {
+    color: #ffd700;
+    margin-bottom: 6px;
+    font-size: 1em;
+    letter-spacing: 1px;
+}
+
+.meter {
+    width: 280px;
+    height: 22px;
+    background: #1a1a1a;
+    border: 2px solid #8b0000;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8b0000, #ff4444, #ffd700);
+    width: 75%;
+    transition: width 1s ease;
+    box-shadow: 0 0 12px #ff4444;
+}
+
+.scene-title {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(10,10,15,0.85);
+    color: #ffd700;
+    padding: 10px 20px;
+    border: 2px solid #8b0000;
+    border-radius: 4px;
+    font-size: 1.2em;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px #8b0000;
+}
